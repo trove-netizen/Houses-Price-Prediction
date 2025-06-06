@@ -1,0 +1,82 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn import preprocessing 
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import ExtraTreesRegressor
+from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import r2_score
+from sklearn.metrics import mean_absolute_error
+from sklearn.metrics import mean_squared_error
+housing = pd.read_csv('hosing.csv')
+housing
+housing.shape
+x=housing.drop(columns='Price',axis=1)
+y=housing['Price']
+print(x)
+y
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=4)
+missing_values=y_train[y_train.isnull()]
+print(missing_values)
+model_random = RandomForestRegressor()
+random = model_random.fit(x_train,y_train)
+model_decision= DecisionTreeRegressor()
+decision=model_decision.fit(x_train,y_train)
+model_extral=ExtraTreesRegressor()
+extral=model_extral.fit(x_train,y_train)
+predict_random=random.predict(x_test)
+predict_decision=decision.predict(x_test)
+predict_extral=extral.predict(x_test)
+
+df1 = pd.DataFrame({'actual':y_test,'random':predict_random,'decision':predict_decision,'extral':predict_extral})
+df1
+
+plt.subplot(221)
+plt.plot(df1['actual'].iloc[0:11],label='Actual')
+plt.plot(df1['random'].iloc[0:11],label='random')
+plt.legend
+
+plt.subplot(222)
+plt.plot(df1['actual'].iloc[0:11],label='Actual')
+plt.plot(df1['decision'].iloc[0:11],label='decision')
+plt.legend
+plt.tight_layout()
+
+plt.subplot(223)
+plt.plot(df1['actual'].iloc[0:11],label='Actual')
+plt.plot(df1['extral'].iloc[0:11],label='extral')
+plt.legend
+plt.tight_layout()
+
+
+
+
+plt.tight_layout()
+
+plt.legend
+
+random_r2=r2_score(predict_random,y_test)
+decision_r2=r2_score(predict_decision,y_test)
+extral_r2=r2_score(predict_extral,y_test)
+print(random_r2,decision_r2,extral_r2)
+
+mean_random=mean_absolute_error(predict_random,y_test)
+mean_decision=mean_absolute_error(predict_decision,y_test)
+print(mean_random,mean_decision)
+
+random_squared=mean_squared_error(predict_random,y_test)
+decision_squared=mean_squared_error(predict_decision,y_test)
+print(random_squared,decision_squared)
+new={'Zip':1097,'Area':109,'Room':4,'Lon':4.944774,'Lat':52.343782}
+
+d = pd.DataFrame(new,index=[0])
+
+new_pred = random.predict(d)
+print("price cost for new a house is:",new_pred)
+housing
