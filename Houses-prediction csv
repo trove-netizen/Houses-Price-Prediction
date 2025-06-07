@@ -1,4 +1,4 @@
-# DISCLAIMER: This is real-world data shared with permission by the real estate company for educational purposes only.
+# DISCLAIMER: This is real-world data from a real estate company. I built a predictive model for them, and full permission was granted to publish and use this dataset for educational, demonstration, and portfolio purposes.
 
 Zip,Price,Area,Room,Lon,Lat
 1091,685000,64,3,4.907736,52.356157
