@@ -1,3 +1,9 @@
+# DISCLAIMER:
+# The dataset used in this script is sourced from Kaggle and is intended for educational and demonstration purposes only.
+# It does not represent real-world medical or pharmaceutical data and should not be used for actual healthcare decisions.
+
+
+
 Zip,Price,Area,Room,Lon,Lat
 1091,685000,64,3,4.907736,52.356157
 1059,475000,60,3,4.850476,52.348586
